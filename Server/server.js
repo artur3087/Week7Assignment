@@ -36,14 +36,38 @@ app.get("/", (request, response) => {    // Beginning of a function checking it 
 
 }); // End of a function checking it by consoling response //
 
+
 // Bellow - connecting to my API for real //
 
-app.get("/categories", async (request, response) => { // Beggining of a call to my API and a specific content of my database // This time I have to make it async funtion because it will wait for a response from external source //
+app.get("/categories", async (request, response) => { // Beggining of a call1 to my API and a specific content of my database // This time I have to make it async funtion because it will wait for a response from external source //
 
     const outcome = await db.query("SELECT * FROM categories");  // This calls for all data contained in "films" from my database //
     response.json(outcome.rows); 
 
-}); // End of a call to my API and async function //
+});  // End of a call1 to my API and async function //
+
+
+
+app.get("/films", async (request, response) => {    // Beginning of a CALL2 to my API //
+
+    const outcome = await db.query("SELECT * FROM films");
+    response.json(outcome.rows);
+    
+    
+}
+
+); // END of a CALL2 to my API //
+
+
+
+app.get("/books", async (request, response) => {  // Beginning of a CALL3 to my API //
+
+    const outcome = await db.query("SELECT * FROM books");
+    response.json(outcome.rows);
+
+}); // END of a CALL3 to my API //
+
+
 
 
 // !!! SERVER STARTING below - making it listen on a specific PORT declared above !!! //
