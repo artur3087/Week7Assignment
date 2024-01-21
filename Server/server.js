@@ -21,12 +21,12 @@ app.use(cors());
 
 // !!! Below I connect my database !!! //
 
-// const dbConnect = process.env.DATABASE_URL
-// export const db = new pg.Pool({connectionString: dbConnect});
+const dbConnect = process.env.DATABASE_URL
+export const db = new pg.Pool({connectionString: dbConnect});
 
 
 
-// !!! Creating ENDPOINTS below !!! //
+// !!! Creating ENDPOINTS (checks) below !!! //
 
 // Making firstly a CHECK of the endpoint "/" below: //
 
@@ -34,16 +34,16 @@ app.get("/", (request, response) => {    // Beginning of a function checking it 
 
     response.json("Check done. It works without errors.")
 
-}); // End of a function checking it by concoling response //
+}); // End of a function checking it by consoling response //
 
 // Bellow - connecting to my API for real //
 
-// app.get("/films", async (request, response) => { // Beggining of a call to my API and a specific content of my database // This time I have to make it async funtion because it will wait for a response from external source //
+app.get("/categories", async (request, response) => { // Beggining of a call to my API and a specific content of my database // This time I have to make it async funtion because it will wait for a response from external source //
 
-//     const outcome = await db.query("SELECT * FROM films");  // This calls for all data contained in "films" from my database //
-//     response.json(outcome.rows); 
+    const outcome = await db.query("SELECT * FROM categories");  // This calls for all data contained in "films" from my database //
+    response.json(outcome.rows); 
 
-// }); // End of a call to my API and async function //
+}); // End of a call to my API and async function //
 
 
 // !!! SERVER STARTING below - making it listen on a specific PORT declared above !!! //

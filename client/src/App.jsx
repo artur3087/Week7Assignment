@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// !!! BELOW I IMPORT ALL THE NEEDED STUFF !!! ///
 
-function App() {
-  const [count, setCount] = useState(0)
+// Below I import other js files which will be used for website's pages //
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+import Home from "./PAGES/Home";
+import Films from "./PAGES/Films";
+import Books from "./PAGES/Books";
+import MakePost from "./PAGES/MakePost";
 
-export default App
+// Below I import all the necessary ...  //
+
+import { Routes, Route, Link} from "react-router-dom";
+
+// !!! Below I create default function !!! //
+
+export default function App() { // START of default function App //
+
+  
+
+  return ( // START of RETURNING //
+
+  <div>
+    <h1> \m/ HORROR ATLAS \m/ </h1>
+
+    <nav>
+      <Link to = "/">HOME</Link>
+      <Link to = "/films">FILMS</Link>
+      <Link to = "/books">BOOKS</Link>
+      <Link to = "/post">USER's POSTS</Link>
+      
+    </nav>
+    <br></br>
+
+    <Routes>
+      <Route path = "/" element={<Home />} />
+      <Route path = "/films" element={<Films />} />
+      <Route path = "/books" element={<Books />} />
+      <Route path = "/post" element={<MakePost />} />
+       <Route path = "*" element={<h2>Page NOT found! Error 404 all along :P</h2>} />
+    </Routes>
+
+    
+
+    
+  </div>
+  
+  ) // END of RETURNING //
+
+}; // END of default function App //
