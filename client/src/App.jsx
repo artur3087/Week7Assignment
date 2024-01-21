@@ -15,7 +15,13 @@ import { Routes, Route, Link} from "react-router-dom";
 
 export default function App() { // START of default function App //
 
-  
+  let locateServer; 
+
+  if(window.location.hostname === "localhost") {
+    locateServer = "http://localhost:8080"
+  } else {
+    locateServer = "https://NOTSURE";
+  }
 
   return ( // START of RETURNING //
 
@@ -32,9 +38,9 @@ export default function App() { // START of default function App //
     <br></br>
 
     <Routes>
-      <Route path = "/" element={<Home />} />
-      <Route path = "/films" element={<Films />} />
-      <Route path = "/books" element={<Books />} />
+      <Route path = "/" element={<Home server={locateServer} />} />
+      <Route path = "/films" element={<Films server={locateServer} />} />
+      <Route path = "/books" element={<Books server={locateServer}/>} />
       <Route path = "/post" element={<MakePost />} />
        <Route path = "*" element={<h2>Page NOT found! Error 404 all along :P</h2>} />
     </Routes>

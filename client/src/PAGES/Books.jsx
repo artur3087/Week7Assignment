@@ -1,18 +1,49 @@
+// !!! Below I import all the needed stuff !!! //
 
 
-// Below I create default function //
-
-export default function Books () { // START of default function Books ... //
+import { useState, useEffect } from "react";
 
 
+// !!! Below I create default function !!! //
+
+export default function Books ({server}) { // START of default function Books ... //
+
+    const [books, setBooks] = useState([]);
+    useEffect(() => {
+        fetchBooks();
+    }, []);
 
 
-    return (   // START of RETURNING stuff //
-        <div>
-            <h2> BOOKS </h2>
+    async function fetchBooks () {
+        const endPoint = `${server}/books`
+        const reply = await fetch(`${endPoint}`)
+        const data = await reply.json();
+        setBooks(data);
+      }
+
+
+return (   // START of RETURNING stuff //
+    <section className ="map">
+
+        <h2>BOOKS:</h2>
+        <br></br>
+        
+
+      <div >{books.map((book) => {
+
+        return (
+            <div key = {book.id + book.name} >
+                <h3 key = {book.id && book.name} >{book.id}. {book.name}</h3>
             
-        </div>
-    ) // END of RETURNING stuff //
-    
-    
-    }; // ... END of default function Books //
+            
+            </div>
+        )
+      })}
+       </div>
+
+
+    </section>
+) // END of RETURNING stuff //
+
+
+}; // ... END of default function Books //
